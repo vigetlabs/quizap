@@ -1,23 +1,10 @@
-const socket = io()
-const form = document.getElementById('form')
-const input = document.getElementById('input')
-const messages = document.getElementById('messages')
+import React from 'react'
+import Router from 'react-router'
+import routes from './config/routes'
+import fastclick from 'fastclick'
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault()
-  socket.emit('chat message', input.value)
-  input.value = ''
+Router.run(routes, function(Handler, state){
+  React.render(<Handler router={this} params={state.params}/> , document.getElementById('app'))
 })
 
-socket.on('user connected', function(){
-  const li = document.createElement('li')
-  console.log('user connected')
-  li.innerText = 'user connected'
-  messages.appendChild(li)
-})
-
-socket.on('chat message', function(message){
-  const li = document.createElement('li')
-  li.innerText = message
-  messages.appendChild(li)
-})
+fastclick.attach(document.body)
