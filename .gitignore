@@ -1,0 +1,5 @@
+.DS_Store
+.sass-cache
+public
+node_modules
+app/assets/stylesheets/generated
