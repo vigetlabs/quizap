@@ -1,14 +1,13 @@
-var config = require('./')
-var karmaWebpack = require('karma-webpack')
-var webpackConfig = require('./webpack')('test')
+const config = require('./')
+const karmaWebpack = require('karma-webpack')
+const webpackConfig = require('./webpack')('test')
+const testPattern = `${config.sourceDirectory}/js/**/__test__/*`
 
-module.exports = {
+export default {
   frameworks: ['mocha', 'sinon-chai'],
-  files: [
-    'app/assets/javascripts/**/__tests__/*'
-  ],
+  files: [testPattern],
   preprocessors: {
-    'app/assets/javascripts/**/__tests__/*': ['webpack']
+    [testPattern]: ['webpack']
   },
   webpack: webpackConfig,
   singleRun: process.env.TRAVIS_CI === 'true',

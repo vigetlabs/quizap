@@ -37,20 +37,22 @@ gulp.task('rev-iconfont-workaround', ['rev-assets'], function() {
     }
   });
 
-  // Add hash to non-svg font files
-  var streams = fontList.map(function(file) {
-    // Add references in manifest
-    ['.eot', '.woff', '.ttf'].forEach(function(ext){
-      manifest[file.path + ext] = file.path + file.hash + ext;
+  if(fontList.length) {
+    // Add hash to non-svg font files
+    var streams = fontList.map(function(file) {
+      // Add references in manifest
+      ['.eot', '.woff', '.ttf'].forEach(function(ext){
+        manifest[file.path + ext] = file.path + file.hash + ext;
+      });
+
+      return gulp.src(config.publicDirectory + '/' + file.path + '*.!(svg)')
+        .pipe(rename({suffix: file.hash}))
+        .pipe(gulp.dest(iconConfig.dest));
     });
 
-    return gulp.src(config.publicDirectory + '/' + file.path + '*.!(svg)')
-      .pipe(rename({suffix: file.hash}))
-      .pipe(gulp.dest(iconConfig.dest));
-  });
+    // Re-write rev-manifest.json to disk
+    fs.writeFile(config.publicDirectory + '/rev-manifest.json', JSON.stringify(manifest, null, 2));
 
-  // Re-write rev-manifest.json to disk
-  fs.writeFile(config.publicDirectory + '/rev-manifest.json', JSON.stringify(manifest, null, 2));
-
-  return merge.apply(this, streams);
+    return merge.apply(this, streams);
+  }
 });

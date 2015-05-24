@@ -12,6 +12,6 @@
 */
 
 // Enable es6 in all subsequenet requires
-require("babel-core/register")
+require('babel-core/register')
 // Require all tasks in gulp/tasks, including subfolders
 require('require-dir')('./tasks', { recurse: true });

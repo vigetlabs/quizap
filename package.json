@@ -2,9 +2,9 @@
   "name": "quizap",
   "version": "0.0.1",
   "description": "my first socket.io app",
-  "script": {
+  "scripts": {
     "build": "gulp build:production",
-    "postinstall": "npm build",
+    "postinstall": "gulp build:production",
     "start": "node server",
     "watch": "gulp"
   },

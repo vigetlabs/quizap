@@ -1,3 +1,4 @@
+require('babel-core/register')
 var karmaConfig = require('./gulpfile.js/config/karma')
 
 module.exports = function(config) {
