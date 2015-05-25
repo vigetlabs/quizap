@@ -17,10 +17,26 @@ app
 server.listen(config.port)
 
 io.on('connection', function(socket){
-  socket.broadcast.emit('user connected');
+  socket.broadcast.emit('player connected');
 
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg)
+  socket.on('yep', function(zap) {
+    console.log('yep', zap)
+    io.emit('yep', zap)
+  })
+
+  socket.on('nope', function(zap){
+    console.log('nope', zap)
+    io.emit('nope', zap)
+  })
+
+  socket.on('reset', function() {
+    console.log('reset')
+    io.emit('reset')
+  })
+
+  socket.on('zap', function(zap) {
+    console.log('zap', zap)
+    io.emit('zap', zap)
   })
 })
 
