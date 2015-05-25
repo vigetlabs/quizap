@@ -1,0 +1,106 @@
+.main__header
+  align-items: center
+  background: #fff
+  display: flex
+  flex-direction: row
+  flex: none
+  height: units(6)
+  padding: units(1) units(2)
+  vertical-align: middle
+
+  +breakpoint(420px)
+    padding: units(1) units(5)
+
+  +breakpoint-v-medium
+    height: units(9)
+
+  +breakpoint-v-large
+    height: units(11)
+
+  .logo
+    bottom: type-units(-1)
+    float: left
+    font-size: type-units(8)
+
+    +breakpoint(420px)
+      padding: 0 units(2)
+
+    +breakpoint-v-medium
+     font-size: type-units(10)
+
+    +breakpoint-v-large
+      font-size: type-units(12)
+
+  &.-logged-in
+    background-color: $blue
+
+    .main__header__logo
+      .icon.-logo-mil
+        color: #fff
+
+.main__header__nav-toggle
+  float: left
+  margin-left: units(-2)
+
+.main__header__page-title
+  border-left: 2px solid rgba(white, 0.25)
+  color: #fff
+  display: block
+  font-weight: bold
+  line-height: 1
+  padding: units(0.5) units(0) units(0.5) units(3)
+
+  a
+    font-weight: normal
+
+  .icon.-arrow
+    color: darken($blue, 15%)
+    font-size: units(1.5)
+    display: inline-block
+    margin: 0 units(1)
+    text-shadow: 1px 0 0 darken($blue, 15%)
+
+  h2,
+  a
+    color: #fff
+    display: inline-block
+
+.main__header__username
+  a
+    +transition
+    border-radius: units(0.5)
+    border: 1px solid rgba(lighten($blue, 20%), 0.5)
+    color: #fff
+    display: block
+    font-size: units(2)
+    padding: 0 units(2)
+
+    &:focus,
+    &:hover
+      background-color: rgba(white, 0.1)
+      border-color: 1px solid rgba(lighten($blue, 20%), 1)
+
+      .icon.-profile
+        color: #fff
+
+
+  .icon.-profile
+    color: rgba(lighten($blue, 20%), 0.85)
+    display: inline-block
+    font-size: 15px
+    margin: 0 4px 0 -4px
+    position: relative
+    top: 1px
+
+    &:before
+      +transition
+
+
+.main__header__center
+  flex: 1
+
+.main__header__right
+  display: none
+
+  +breakpoint-medium
+    display: block

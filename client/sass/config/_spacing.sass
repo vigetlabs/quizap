@@ -1,0 +1,25 @@
+$baseUnit: 8
+
+@function snap($value)
+  @return round($value / $baseUnit) * $baseUnit + px
+
+@function units($x, $offset: 0)
+  @return (($x * 8) + $offset) + px
+
+.margin-top
+  margin-bottom: units(2)
+
+  +breakpoint-v-small
+     margin-bottom: units(3)
+
+  +breakpoint-v-medium
+     margin-bottom: units(4)
+
+.margin-bottom
+  margin-bottom: units(2)
+
+  +breakpoint-v-small
+     margin-bottom: units(3)
+
+  +breakpoint-v-medium
+     margin-bottom: units(4)

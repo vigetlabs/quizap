@@ -1,0 +1,121 @@
+html
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+
+body
+  color: $text-grey
+  font-family: 'Source Sans Pro', sans-serif
+  font-size: units(2.5)
+  line-height: units(3.5)
+
+  * // Catches things like inputs
+    +font-smoothing
+    color: inherit
+    font-family: inherit
+    font-size: inherit
+    line-height: inherit
+
+a
+  color: $blue
+  outline: none
+  display: inline-block
+  text-decoration: none
+
+  [data-whatinput="keyboard"] &:focus
+    outline: dotted 1px $blue
+
+.link
+  position: relative
+  display: inline-block
+
+  &:after
+   content: ''
+   display: block
+   position: absolute
+   bottom: units(-0.5)
+   background-color: $blue
+   opacity: 0.5
+   visibility: hidden
+   left: 0
+   width: 100%
+   height: 1px
+
+  &:focus,
+  &:hover
+    &:after
+      visibility: visible
+
+p
+  margin-bottom: units(1)
+
+a
+  color: $blue
+  text-decoration: none
+  transition: all .2s ease-in-out
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5
+  display: block
+  font-weight: normal
+  position: relative
+  line-height: 1
+  margin-bottom: units(2)
+
+  +breakpoint-v-small
+    margin-bottom: units(3)
+
+  +breakpoint-v-medium
+    margin-bottom: units(4)
+
+.h1
+  color: $dark-grey
+  font-size: units(4)
+
+  +breakpoint-medium
+    font-size: units(4.5)
+
+  +breakpoint-large
+    font-size: units(5)
+
+.h2
+  color: $blue
+  font-size: units(3.5)
+
+  +breakpoint-medium
+    font-size: units(4)
+
+.h3
+  font-size: units(3.5)
+
+  +breakpoint-medium
+    font-size: units(4)
+
+.h4
+  font-size: units(2.5)
+  margin-bottom: units(2)
+
+  +breakpoint-medium
+    font-size: units(3)
+
+.subtitle
+  color: $text-grey--light
+  font-size: 1em
+  margin-bottom: units(4)
+  margin-top: units(-3)
+
+.info
+  display: block
+  font-size: units(2)
+  line-height: units(2.5)
+  margin-bottom: units(1)
+  text-align: left
+
+code
+  background: rgba(black, 0.1)
+  border-radius: units(0.5)
+  color: $blue
+  display: inline-block
+  padding: 0 units(1)

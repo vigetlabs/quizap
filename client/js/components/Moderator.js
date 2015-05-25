@@ -1,19 +1,21 @@
 import React from 'react'
+import StatusLight from './shared/StatusLight'
+
 const socket = io()
 
 const statusText = {
-  ready: 'Ready...',
-  live: 'Ask the question.',
-  zaps: 'Are they right?',
-  nope: 'NOPE.',
-  yep: 'YEP!'
+  wait: 'Activate',
+  ready: 'Ready',
+  zap: 'Zap',
+  nope: 'Nope',
+  yep: 'Yep'
 }
 
 export default React.createClass({
   getInitialState() {
     return {
       zaps: [],
-      status: 'ready',
+      status: 'wait',
       playerTotal: 0
     }
   },
@@ -39,15 +41,16 @@ export default React.createClass({
     const zaps = this.state.zaps.concat(zap)
     const state = {zaps}
     if(!this.state.zaps.length) {
-      state.status = 'zaps'
+      state.status = 'zap'
     }
     this.setState(state)
   },
 
-  live() {
+  ready() {
     this.setState({
-      status: 'live'
+      status: 'ready'
     })
+    socket.emit('ready')
   },
 
   yep() {
@@ -76,23 +79,32 @@ export default React.createClass({
     })
   },
 
-  render() {
+  getButtons() {
     const zap = !!this.state.zaps[0]
+    if(zap) {
+      return [
+        <button className="button -yep" disabled={!zap} onClick={this.yep}>Yep!</button>,
+        <button className="button -nope" disabled={!zap} onClick={this.nope}>Nope!</button>,
+      ]
+    } else {
+      if(this.state.status === 'ready') {
+        return <button className="button -reset" onClick={this.reset}>Reset</button>
+      } else {
+        return <button className="button -ready" disabled={zap} onClick={this.ready}>Ready</button>
+      }
+    }
+  },
 
+  render() {
     return (
       <div className={`moderator screen -${this.state.status}`}>
         <div className="display">
-          <h1 className="status">
-          { statusText[this.state.status] }
-          </h1>
-          <p>Players: {this.state.playerTotal}</p>
+          <StatusLight text={statusText[this.state.status]} status={this.state.status} />
         </div>
         <div className="buttons">
-          <button className="button -yep" disabled={!zap} onClick={this.yep}>Yep!</button>
-          <button className="button -nope" disabled={!zap} onClick={this.nope}>Nope!</button>
-          <button className="button -ready" disabled={zap} onClick={this.live}>{ this.state.status === 'live' ? 'Locked and Loaded.' : 'Ready?'}</button>
-          <button className="button -reset" onClick={this.reset}>Reset</button>
+          {this.getButtons()}
         </div>
+        <p>Players: {this.state.playerTotal}</p>
       </div>
     )
   }

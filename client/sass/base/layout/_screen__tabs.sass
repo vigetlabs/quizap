@@ -1,0 +1,84 @@
+.screen__tabs
+  font-size: units(2)
+  text-align: center
+  color: #000
+  flex-shrink: 0
+  position: relative
+
+  +breakpoint-medium
+    font-size: units(2.25) // #TODO don't break the grid?
+
+  ul
+    display: flex
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+
+  li
+    flex: 1 0 auto
+    position: relative
+    z-index: 1
+
+    &:before
+      content: ''
+      border-left: 1px solid $light-grey
+      height: 40%
+      right: 0
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+
+    &:last-child:before
+      display: none
+
+    a
+      +transition
+      color: inherit
+      display: block
+      opacity: 0.5
+      padding: units(1.5) units(2)
+      position: relative
+      text-transform: none
+
+      .sprite
+        height: units(6)
+        width: units(6)
+        margin: -18px -7px -18px -15px
+        filter: grayscale(1)
+
+      +breakpoint-v-medium
+        padding-top: units(2)
+        padding-bottom: units(2)
+
+      &:after
+        +transition
+        border-bottom: units(0.5) solid rgba($blue, 0.0)
+        bottom: 0px
+        content: ''
+        display: inline-block
+        left: 0
+        position: absolute
+        border-width: 0
+        width: 100%
+
+      &:focus,
+      &:hover
+        opacity: 0.8
+
+        .sprite
+          filter: grayscale(0)
+
+        &:after
+          border-color: rgba($blue, 1)
+          border-width: units(0.5)
+
+    &.-selected a
+      opacity: 1
+
+      .sprite
+        filter: grayscale(0)
+
+      &:after
+        border-color: rgba($blue, 1)
+        border-width: units(0.5)
+
+

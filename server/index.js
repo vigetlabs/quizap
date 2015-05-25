@@ -20,24 +20,30 @@ io.on('connection', function(socket){
   socket.broadcast.emit('player connected');
 
   socket.on('yep', function(zap) {
-    console.log('yep', zap)
     io.emit('yep', zap)
   })
 
   socket.on('nope', function(zap){
-    console.log('nope', zap)
     io.emit('nope', zap)
   })
 
   socket.on('reset', function() {
-    console.log('reset')
     io.emit('reset')
   })
 
   socket.on('zap', function(zap) {
-    console.log('zap', zap)
     io.emit('zap', zap)
   })
+
+  socket.on('ready', function() {
+    io.emit('ready')
+  })
+
+  socket.on('wait', function() {
+    io.emit('wait')
+  })
+
+
 })
 
 gutil.log('production server started on ' + gutil.colors.green(config.port))

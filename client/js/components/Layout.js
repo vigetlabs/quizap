@@ -11,18 +11,14 @@ export default React.createClass({
     }
   },
 
-  componentDidMount() {
-  },
-
-  componentWillUnmount () {
-  },
-
   render () {
     const key = this.props.router.getRouteAtDepth(this.props.routeDepth).name
     return (
-      <div id="app">
-        QUIZAPPP!
-        <Transition component="main" className="app-main" transitionName="zoom">
+      <div className="app">
+        <header className="header">
+          QUIZAPPP!
+        </header>
+        <Transition className="main" transitionName="zoom">
           <RouteHandler key={key} router={this.props.router} routeDepth={this.props.routeDepth + 1} params={this.props.params} />
         </Transition>
       </div>

@@ -1,0 +1,314 @@
+$input-border: 1px solid $light-grey
+$input-border--thick: 1px solid $light-grey
+
+.step-screen,
+.form
+  &.-compact
+    .form-group
+      display: block !important
+
+    label:not(.checkbox)
+      @extend .screen-reader
+
+  label
+    display: block
+
+  input:not(.button),
+  textarea
+    max-width: 720px
+    min-width: units(10)
+    width: 100%
+
+  textarea,
+  input:not(.button)
+    -webkit-appearance: none
+    appearance: none
+    border-radius: units(.5)
+    border: $input-border
+    font-size: units(2)
+    line-height: 1
+    outline: none
+    padding: units(1.5) units(2)
+
+    +breakpoint-v-medium
+      font-size: units(2.5)
+      padding: units(1.5) units(2)
+
+    &.-short
+      +breakpoint-v-medium
+        padding: units(1.5) units(2)
+
+    &.-code
+      font-family: monospace
+      font-size: units(4)
+      font-weight: bold
+      letter-spacing: units(1)
+      max-width: units(20)
+      padding: units(1) units(2)
+      text-align: center
+      text-align: center
+      text-indent: units(1)
+
+  &.-full
+    display: block
+
+    .form-group
+      padding: 0
+
+.checkbox
+  padding-left: units(4) !important
+  position: relative
+
+  input[type="checkbox"]
+    height: units(2)
+    left: 0
+    margin: 0 units(2) 0 0
+    min-width: 0
+    opacity: 0
+    padding: units(1)
+    position: absolute
+    top: 2px
+    width: units(2)
+
+    &:checked
+      background: $blue
+      border-color: $blue
+
+      + .checkbox-label
+        &:after
+          border-color: $blue
+          background-color: $blue
+
+        &:before
+          visibility: visible
+
+
+.checkbox-label
+  font-size: units(2)
+  font-weight: normal
+  line-height: units(2.5)
+
+  +icon--check
+    color: #fff
+    font-size: units(1.25)
+    font-weight: bold
+    left: 5px
+    position: absolute
+    top: 5px
+    visibility: hidden
+    z-index: 1
+
+  &:after
+    border-radius: units(0.5)
+    border: 1px solid $light-grey
+    content: ''
+    height: units(2.5)
+    left: 0
+    position: absolute
+    top: 0
+    width: units(2.5)
+
+input:not(.button),
+textarea,
+  &:focus
+    border-color: $blue
+    box-shadow: 0 0 5px rgba($blue, 0.5)
+
+button
+  -webkit-appearance: none
+  appearance: none
+  background: transparent
+  border: none
+  margin: 0 0 units(1) 0
+  padding: 0
+
+.button
+  +color-button($blue)
+  -webkit-appearance: none
+  appearance: none
+  border-radius: 4px
+  color: #fff
+  cursor: pointer
+  display: inline-block
+  font-family: inherit
+  font-size: units(2)
+  font-weight: bold
+  line-height: 1
+  outline: none
+  padding: units(1.5) units(3.5)
+  position: relative
+  text-transform: uppercase
+  transition: none
+  user-select: none
+  white-space: normal
+
+  +breakpoint-v-medium
+     padding: units(2.5) units(3.5)
+
+  +breakpoint-medium
+    min-width: units(20)
+
+  &:hover
+    text-shadow: 0 0 15px rgba(white, 0.5)
+
+  &:active
+    transform: translateY(2px)
+
+  &.-block
+    display: block
+    width: 100%
+    text-align: center
+
+  &.-link
+    background: transparent
+    border-color: transparent
+    border-radius: 0
+    box-shadow: none
+    color: $blue
+    font-size: units(2)
+    font-weight: normal
+    min-width: 0
+    padding: units(2)
+    text-transform: none
+
+    &:after
+      +transition
+      border-bottom: 2px solid rgba($blue, 0.15)
+      bottom: 0
+      content: ''
+      display: inline-block
+      left: 0
+      left: 50%
+      position: absolute
+      transform: translateX(-50%)
+      width: 25%
+
+    &:focus,
+    &:hover
+      border-color: transparent!important
+      box-shadow: none!important
+
+      &:after
+        border-color: rgba($blue, 1)
+        width: 100%
+
+  &.-green
+    +color-button($green)
+
+  &.-short
+    padding: units(1) units(2)
+
+    +breakpoint-medium
+      padding: units(1) units(3.5)
+
+  &[disabled]
+    cursor: default
+    box-shadow: none
+    transform: translateY(3px)
+    opacity: 0.5
+    pointer-events: none
+
+[data-whatinput="keyboard"]
+  .button
+    &:focus:not(:active)
+      text-shadow: 0 3px 25px white
+
+.form-row
+  margin-bottom: units(2)
+
+  > *
+    margin-bottom: 0
+
+.scroll-box
+  border-radius: units(0.5)
+  border: $input-border
+  display: block
+  font-size: units(2)
+  line-height: units(2.5)
+  max-height: snap(176)
+  overflow: auto
+  padding: units(1)
+  position: relative
+  text-align: left
+  width: 100%
+
+.form-group
+  position: relative
+  margin-bottom: units(2)
+
+  .button
+    width: 100%
+
+  .label,
+  label
+    font-size: units(2)
+    font-weight: bold
+    margin-bottom: units(1)
+    line-height: units(2.5)
+    flex-shrink: 0
+
+    &.-light
+      font-weight: normal
+
+  +breakpoint-v-medium
+    margin-bottom: units(3)
+
+  +breakpoint-medium
+    align-items: center
+    display: flex
+
+    .button
+      width: auto
+
+    label
+      font-size: units(2.5)
+      font-weight: normal
+
+      &:not(.checkbox)
+        width: units(20)
+
+    input
+      flex: 1
+
+    &.-no-label
+      display: block
+      padding-left: units(20)
+
+      label
+        padding: 0
+        width: auto
+
+  .select
+    margin: auto 0
+
+fieldset
+  margin-bottom: units(4)
+
+legend
+  border-bottom: 1px solid $lighter-grey
+  display: block
+  font-size: units(2)
+  line-height: units(2)
+  letter-spacing: 2px
+  padding-bottom: units(1)
+  text-transform: uppercase
+  width: 100%
+
+.search-input
+  position: relative
+
+  input
+    font-size: units(2)
+    height: units(5)
+    padding-left: units(4)
+
+    +placeholder
+      line-height: units(2.5)
+
+  +icon--search
+    color: $light-grey
+    font-size: units(2)
+    left: units(1.5)
+    position: absolute
+    top: units(1.5)
+

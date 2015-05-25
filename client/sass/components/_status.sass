@@ -1,0 +1,51 @@
+=light-color($color)
+  box-shadow: 0 0 10px $color, inset 0 0 10px $color
+  border: 1px solid lighten($color, 25%)
+
+.status
+  position: relative
+  display: block
+  font-size: units(2.5)
+
+  &.-nope
+    color: $red
+
+  &.-ready
+    color: lighten($blue, 35%)
+    text-shadow: 0 0 5px lighten($blue, 35%)
+
+.status__text
+  position: absolute
+  transform: translate(-50%, -50%)
+  text-transform: uppercase
+  letter-spacing: units(1)
+  top: 50%
+  left: 50%
+
+.status__light
+  border-radius: 50%
+  display: block
+  height: 0
+  margin: auto
+  padding-top: 50%
+  position: relative
+  width: 50%
+
+  .-wait &
+    +light-color(white)
+
+  .-ready &
+    +light-color($blue)
+
+  .-yep &
+    +light-color($green)
+
+  .-nope &
+    +light-color($red)
+
+  .-live &
+    +light-color(magenta)
+
+  .-zap &
+    +light-color(yellow)
+

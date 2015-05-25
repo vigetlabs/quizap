@@ -1,0 +1,59 @@
+.nav
+  +transition
+  height: 100%
+  left: 0
+  opacity: 0
+  overflow: hidden
+  position: fixed
+  transform: translateZ(0)
+  visibility: hidden
+  width: 100%
+  z-index: 1
+
+#nav__screen
+  background: rgba(black, 0.25)
+  display: block
+  height: 100%
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+
+.nav__pane
+  +transition
+  -webkit-overflow-scrolling: touch
+  background: #fff
+  display: flex
+  flex-direction: column
+  height: 100%
+  max-width: 80%
+  overflow: auto
+  padding: units(2)
+  position: relative
+  transform: translate3d(-100%,0,0)
+  width: units(34)
+  z-index: 1
+
+  > *
+    flex-shrink: 0
+
+  +breakpoint(420px)
+    padding: units(4)
+    width: units(40)
+
+.nav-open
+  &,
+  body,
+  .main
+    overflow: hidden
+    position: fixed
+
+  .main
+    filter: blur(1px)
+
+  .nav
+    opacity: 1
+    visibility: visible
+
+  .nav__pane
+    transform: translate3d(0,0,0)

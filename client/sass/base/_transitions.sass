@@ -1,0 +1,100 @@
+$transition-time: .2s
+$transition-easing: ease-in-out
+
+%transition
+  position: absolute
+  height: 100%
+
+// Slide right
+.slide-enter
+  @extend %transition
+  transform: translate3d(100%, 0, 0)
+
+.slide-enter.slide-enter-active
+  transform: translate3d(0, 0, 0)
+  transition: all $transition-time $transition-easing
+
+.slide-leave
+  @extend %transition
+  transform: translate3d(0, 0, 0)
+
+.slide-leave.slide-leave-active
+  transform: translate3d(-100%, 0, 0)
+  transition: all $transition-time $transition-easing
+
+// Slide Left
+.slide-reverse-enter
+  @extend %transition
+  transform: translate3d(-100%, 0, 0)
+
+.slide-reverse-enter.slide-reverse-enter-active
+  transform: translate3d(0, 0, 0)
+  transition: all $transition-time $transition-easing
+
+.slide-reverse-leave
+  @extend %transition
+  transform: translate3d(0, 0, 0)
+
+.slide-reverse-leave.slide-reverse-leave-active
+  transform: translate3d(100%, 0, 0)
+  transition: all $transition-time $transition-easing
+
+
+// Zoom out
+.zoom-enter
+  @extend %transition
+  opacity: 0
+  transform: scale(2)
+
+.zoom-enter.zoom-enter-active
+  opacity: 1
+  transform: scale(1)
+  transition: all $transition-time $transition-easing
+
+.zoom-leave
+  @extend %transition
+  opacity: 1
+  transform: scale(1)
+
+.zoom-leave.zoom-leave-active
+  opacity: 0
+  transform: scale(0)
+  transition: all $transition-time $transition-easing
+
+// Zoom In
+.zoom-reverse-enter
+  @extend %transition
+  opacity: 0
+  transform: scale(0)
+
+.zoom-reverse-enter.zoom-reverse-enter-active
+  opacity: 1
+  transform: scale(1)
+  transition: all $transition-time $transition-easing
+
+.zoom-reverse-leave
+  @extend %transition
+  opacity: 1
+  transform: scale(1)
+
+.zoom-reverse-leave.zoom-reverse-leave-active
+  opacity: 0
+  transform: scale(2)
+  transition: all $transition-time $transition-easing
+
+// fade out
+.fade-enter
+  @extend %transition
+  opacity: 0.9
+
+.fade-enter.fade-enter-active
+  opacity: 1
+  transition: all $transition-time $transition-easing
+
+.fade-leave
+  @extend %transition
+  opacity: 1
+
+.fade-leave.fade-leave-active
+  opacity: 0
+  transition: all $transition-time $transition-easing

@@ -1,20 +1,23 @@
-import React from 'react'
+import React       from 'react'
+import StatusLight from './shared/StatusLight'
+
 const socket = io()
 
 const statusText = {
-  ready: 'Ready...',
-  asking: 'Zap to answer!',
-  zapped: 'Waiting for your answer...',
-  answering: 'Too Slow.',
-  nope: 'NOPE.',
-  yep: 'YEP!'
+  wait: 'wait',
+  ready: 'Ready',
+  asking: 'Zap',
+  zap: 'Active',
+  answering: 'Too Slow',
+  nope: 'NOPE',
+  yep: 'YEP'
 }
 
 export default React.createClass({
   getInitialState() {
     return {
       score: 0,
-      status: 'ready'
+      status: 'wait'
     }
   },
 
@@ -38,8 +41,8 @@ export default React.createClass({
       this.setState({status: 'ready'})
     })
 
-    socket.on('live', () => {
-      this.setState({status: 'live'})
+    socket.on('ready', () => {
+      this.setState({status: 'ready'})
     })
   },
 
@@ -47,23 +50,20 @@ export default React.createClass({
     socket.emit('zap', {
       id: socket.id
     })
-    this.setState({status: 'zapped'})
+    this.setState({status: 'zap'})
   },
 
   render() {
     return (
       <div className={`player screen -${this.state.status}`}>
         <div className="display">
-          <h1 className="status">
-            { statusText[this.state.status] }
-          </h1>
+          <StatusLight text={statusText[this.state.status]} status={this.state.status} />
         </div>
         <div className="buttons">
-          <button onClick={this.zap} disabled={this.state.status === 'zapped'}>Zap!</button>
+          <button className="button -zap" onClick={this.zap} disabled={this.state.status !== 'ready'}>Zap!</button>
         </div>
         <footer>
           <p>Score: {this.state.score}</p>
-          <p>Players: {this.state.playerTotal}</p>
         </footer>
       </div>
     )

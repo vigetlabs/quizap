@@ -1,0 +1,23 @@
+.page
+  display: flex
+  flex-direction: column
+  flex-grow: 1
+  width: 100%
+
+  > .container
+    display: flex
+    flex-direction: column
+    flex-grow: 1
+    max-width: snap(1200)
+
+.page__nav
+  background: #fff
+
+.page__content
+  background: #fff
+  flex-grow: 1
+  padding: units(2)
+
+  +breakpoint-medium
+    padding: units(4)
+

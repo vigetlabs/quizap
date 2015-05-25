@@ -1,0 +1,48 @@
+$breakpoint--small: 400px
+$breakpoint--medium: 600px
+$breakpoint--large: 800px
+$breakpoint--full: 1000px
+
+=breakpoint($breakpoint)
+  @media (min-width: $breakpoint)
+    @content
+
+=breakpoint-max($breakpoint)
+  @media (max-width: $breakpoint)
+    @content
+
+=vertical-breakpoint($breakpoint)
+  @media (min-height: $breakpoint)
+    @content
+
+=breakpoint-small
+  +breakpoint($breakpoint--small)
+    @content
+
+=breakpoint-medium
+  +breakpoint($breakpoint--medium)
+    @content
+
+=breakpoint-large
+  +breakpoint($breakpoint--large)
+    @content
+
+=breakpoint-full
+  +breakpoint($breakpoint--full)
+    @content
+
+=breakpoint-v-small
+  +vertical-breakpoint($breakpoint--small)
+    @content
+
+=breakpoint-v-medium
+  +vertical-breakpoint($breakpoint--medium)
+    @content
+
+=breakpoint-v-large
+  +vertical-breakpoint($breakpoint--large)
+    @content
+
+=breakpoint-v-full
+  +vertical-breakpoint($breakpoint--large)
+    @content
