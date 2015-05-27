@@ -1,5 +1,6 @@
 import React       from 'react'
 import StatusLight from './shared/StatusLight'
+import Sound       from '../lib/Sound'
 
 const socket = io()
 
@@ -22,8 +23,13 @@ export default React.createClass({
   },
 
   componentDidMount() {
+    this.yepSound = new Sound('/assets/audio/yep.mp3')
+    this.nopeSound = new Sound('/assets/audio/nope.mp3')
+
     socket.on('yep', (zapper) => {
       if(socket.id === zapper.id) {
+        this.yepSound.volume = 1
+        this.yepSound.play()
         this.setState({
           status: 'yep',
           score: this.state.score + 1
@@ -33,6 +39,8 @@ export default React.createClass({
 
     socket.on('nope', (zapper) => {
       if(socket.id === zapper.id) {
+        this.nopeSound.volume = 1
+        this.nopeSound.play()
         this.setState({status: 'nope'})
       }
     })
@@ -47,6 +55,10 @@ export default React.createClass({
   },
 
   zap() {
+    this.yepSound.volume = 0
+    this.yepSound.play()
+    this.nopeSound.volume = 0
+    this.nopeSound.play()
     socket.emit('zap', {
       id: socket.id
     })
