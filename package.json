@@ -6,6 +6,7 @@
     "build": "gulp build:production",
     "postinstall": "gulp build:production",
     "start": "node server",
+    "test": "karma start",
     "watch": "gulp"
   },
   "dependencies": {
