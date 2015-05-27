@@ -1,6 +1,6 @@
 module.exports = {
   root: process.cwd() + '/public',
-  port: 5000,
+  port: process.env.PORT || 5000,
   logLevel: 'dev',
   staticOptions: {
     extensions: ['html'],
