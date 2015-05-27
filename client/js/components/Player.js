@@ -24,6 +24,7 @@ export default React.createClass({
 
   componentDidMount() {
     this.yepSound = new Sound('/assets/audio/yep.mp3')
+    this.activeSound = new Sound('/assets/audio/active.mp3')
     this.nopeSound = new Sound('/assets/audio/nope.mp3')
 
     socket.on('yep', (zapper) => {
@@ -59,6 +60,7 @@ export default React.createClass({
     this.yepSound.play()
     this.nopeSound.volume = 0
     this.nopeSound.play()
+    this.activeSound.play()
     socket.emit('zap', {
       id: socket.id
     })
