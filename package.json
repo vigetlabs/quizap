@@ -2,6 +2,10 @@
   "name": "quizap",
   "version": "0.0.1",
   "description": "my first socket.io app",
+  "engines" : {
+    "node" : "^0.12.2",
+    "npm": "^2.7.4"
+  },
   "scripts": {
     "build": "gulp build:production",
     "postinstall": "gulp build:production",
