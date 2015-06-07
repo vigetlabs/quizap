@@ -1,5 +1,7 @@
 .DS_Store
 .sass-cache
-public
+public/assets
+public/*.html
+public/rev-manifest.json
 node_modules
 app/assets/stylesheets/generated

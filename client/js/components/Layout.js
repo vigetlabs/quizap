@@ -16,7 +16,7 @@ export default React.createClass({
     return (
       <div className="app">
         <header className="header">
-          QUIZAPPP!
+          QUIZAP!
         </header>
         <Transition className="main" transitionName="zoom">
           <RouteHandler key={key} router={this.props.router} routeDepth={this.props.routeDepth + 1} params={this.props.params} />
